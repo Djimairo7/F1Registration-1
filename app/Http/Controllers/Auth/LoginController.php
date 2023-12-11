@@ -21,6 +21,10 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+
+    // Accepted domain in emails
+    protected $acceptDomain = 'windesheim.nl';
+
     /**
      * Where to redirect users after login.
      *
@@ -36,5 +40,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'email' => ['required', 'string', 'email:rfc,dns', function ($attribute, $value, $fail) {
+                $domain = substr(strrchr($value, "@"), 1);
+                if ($domain !== $this->acceptDomain) {
+                    $fail('Invalid email domain.');
+                }
+            }],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
     }
 }
