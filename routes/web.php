@@ -21,7 +21,7 @@ Route::get('/', [UserController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('profiles', ProfileController::class);
 Route::controller(LoginRegisterController::class)->group(function() {
     Route::get('/register', 'register')->name('register');
@@ -30,7 +30,7 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
-    Route::get('/save-last-name', [Usercontroller::class, 'store'])->name('save-last-name');
+    Route::post('/save-last-name', [Usercontroller::class, 'store'])->name('save-last-name');
 });
 
 Auth::routes();
