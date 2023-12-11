@@ -52,13 +52,14 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
              'email' => ['required', 'string', 'email', 'max:255', 'unique:users', function ($attribute, $value, $fail) {
                 $domain = explode('@', $value)[1];
                 if ($domain !== 'windesheim.nl' && $domain !== 'student.windesheim.nl') {
                     $fail('The email must be a valid windesheim student email address.');
                 }
             }],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            
         ]);
     }
         
