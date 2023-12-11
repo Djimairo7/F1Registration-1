@@ -30,8 +30,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Create a new user record with the submitted last name
+        User::create([
+            'last_name' => $request->input('last_name')
+        ]);
+
+        // You can add any additional logic here
+
+        return redirect('/profiles'); // Redirect the user to the desired page
     }
+}
 
     /**
      * Display the specified resource.

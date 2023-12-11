@@ -30,6 +30,7 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
+    Route::get('/save-last-name', [Usercontroller::class, 'store'])->name('save-last-name');
 });
 
 Auth::routes();

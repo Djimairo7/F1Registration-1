@@ -10,11 +10,15 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->string('last_name')->after('name')->nullable();
-    });
-}
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('last_name');
+            // ... other columns
+            $table->timestamps();
+        });
+    }
+    
 
 
     /**

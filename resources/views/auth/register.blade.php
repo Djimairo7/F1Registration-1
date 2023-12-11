@@ -29,7 +29,10 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
                               
                             <div class="col-md-6">
-                            <input type="text" name="last_name" id="last_name" class="form-control" required>
+                            action="{{ route('save-last-name') }}" method="POST">
+    @csrf
+    <input type="text" name="last_name" id="last_name" class="form-control" required>
+    <button type="submit">Submit</button>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
